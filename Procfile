@@ -1,1 +1,1 @@
-FLASK_APP=main.py
+heroku ps:scale web=1
