@@ -1,12 +1,13 @@
 import requests
 import os
-from app import app
-from flask import request
+from flask import Flask, request
 from bs4 import BeautifulSoup
 
 # helper
 from app.helper.HTMLtoJSONParser import HTMLtoJSONParser
 
+
+app = Flask(__name__)
 
 # routes
 @app.route("/", methods=["POST"])
