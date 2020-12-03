@@ -1,16 +1,15 @@
 import requests
 import os
-from flask import Flask, request
+from app import app as application
+from flask import request
 from bs4 import BeautifulSoup
 
 # helper
 from app.helper.HTMLtoJSONParser import HTMLtoJSONParser
 
 
-app = Flask(__name__)
-
 # routes
-@app.route("/", methods=["POST"])
+@application.route("/", methods=["POST"])
 def main():
     try:
         body = request.get_json()
@@ -37,4 +36,4 @@ def main():
         return message, status
 
 if __name__ == "__main__":
-    app.run()
+    application.run()
