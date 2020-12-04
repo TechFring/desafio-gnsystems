@@ -28,10 +28,10 @@
 
 - Execute os comandos a seguir:
   
-  - Caso ainda não tenha o pipenv instalado - [ pip install pipenv ]
+  - Caso não tenha o pipenv instalado - pip install pipenv
   
-  - Instalando as dependências do projeto - [ pipenv install ]
+  - Instalando as dependências do projeto - pipenv install
   
-  - Rodando o ambiente virtual - [ pipenv shell ]
+  - Rodando o ambiente virtual - pipenv shell
   
-  - Rodando o projeto - [ python .\run.py ]
+  - Rodando o projeto - python .\run.py ]
