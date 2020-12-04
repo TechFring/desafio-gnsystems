@@ -1,7 +1,7 @@
 import requests
 import os
 from app import app as application
-from flask import request
+from flask import request, render_template
 from bs4 import BeautifulSoup
 
 # helper
@@ -23,7 +23,8 @@ def main():
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.text, "html.parser")
         html = soup.find("html")
-        json = HTMLtoJSONParser.to_json(str(html))
+        html_to_json = HTMLtoJSONParser(False)
+        json = html_to_json.to_json(str(html))
 
         return json, status
     except KeyError:
@@ -35,5 +36,11 @@ def main():
         message = {"mensagem": "URL inválida"}
         return message, status
 
+@application.route("/", defaults={"path": ""})
+@application.route("/<path:path>")
+def all(path):
+    return render_template("index.html")
+
+
 if __name__ == "__main__":
-    application.run()
+    application.run(debug=True)
