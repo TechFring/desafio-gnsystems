@@ -24,13 +24,13 @@
 
 - Clone o projeto
 
-- Abra o terminal no raiz do projeto
+- Abra o terminal na raiz do projeto
 
 - Execute os comandos a seguir:
   
   - Caso ainda não tenha o pipenv instalado - [ pip install pipenv ]
   
-  - Instalando as depedências do projeto - [ pipenv install ]
+  - Instalando as dependências do projeto - [ pipenv install ]
   
   - Rodando o ambiente virtual - [ pipenv shell ]
   
