@@ -34,4 +34,4 @@
   
   - Rodando o ambiente virtual - pipenv shell
   
-  - Rodando o projeto - python .\run.py ]
+  - Rodando o projeto - python .\run.py
