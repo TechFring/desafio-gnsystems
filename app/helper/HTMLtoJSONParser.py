@@ -1,7 +1,8 @@
 import html.parser
 
 
-def iterate_on_json(json_structure, prefix="", keep_dictionaries=False, skip=["__parent__"]):
+def iterate_on_json(json_structure, prefix="", keep_dictionaries=False,
+                    skip=["__parent__"]):
     for k, v in sorted(json_structure.items()):
         if k in skip:
             continue
@@ -26,7 +27,6 @@ def iterate_on_json(json_structure, prefix="", keep_dictionaries=False, skip=["_
 
 
 class HTMLtoJSONParser(html.parser.HTMLParser):
-
     def __init__(self, raise_exception=True):
         html.parser.HTMLParser.__init__(self, convert_charrefs=True)
         self.doc = {}
@@ -40,7 +40,6 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
     def json(self):
         return self.doc
 
-
     @staticmethod
     def to_json(content, raise_exception=True):
         parser = HTMLtoJSONParser(raise_exception=raise_exception)
@@ -51,7 +50,6 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
     @staticmethod
     def iterate(json_structure, prefix="", keep_dictionaries=False,
                 skip=["__parent__"]):
-
         for _ in iterate_on_json(
                 json_structure, prefix, keep_dictionaries, skip):
             yield _
@@ -78,6 +76,11 @@ class HTMLtoJSONParser(html.parser.HTMLParser):
 
 
     def handle_endtag(self, tag):
+        if tag != self.path[-1] and self.raise_exception:
+            raise Exception(
+                "html is malformed around line: {0} (it might be because "
+                "of a tag <br>, <hr>, <img .. > not closed)".format(
+                    self.line))
         del self.path[-1]
         memo = self.cur
         self.cur = self.cur["__parent__"]
